@@ -1,0 +1,38 @@
+{
+  "SendGrid" : {
+    "username": "user",
+    "password": "pass",
+    "from": "frost.akemi@gmail.com",
+    "to": "frost.akemi2@gmail.com",
+    "subject": "Hi!",
+    "text": "Hi There!",
+    "html": "<b>Hi There!</b>"
+  },
+  "Mailgun" : {
+    "username": "user",
+    "password": "pass",
+    "from": "frost.akemi@gmail.com",
+    "to": "frost.akemi2@gmail.com",
+    "subject": "Hi!",
+    "text": "Hi There!",
+    "html": "<b>Hi There!</b>"
+  },
+  "Mandrill" : {
+    "username": "user",
+    "password": "pass",
+    "from": "frost.akemi@gmail.com",
+    "to": "frost.akemi2@gmail.com",
+    "subject": "Hi!",
+    "text": "Hi There!",
+    "html": "<b>Hi There!</b>"
+  },
+  "SES" : {
+    "username": "user",
+    "password": "pass",
+    "from": "frost.akemi@gmail.com",
+    "to": "frost.akemi2@gmail.com",
+    "subject": "Hi!",
+    "text": "Hi There!",
+    "html": "<b>Hi There!</b>"
+  }
+}

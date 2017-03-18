@@ -21,6 +21,8 @@
   "license": "ISC",
   "devDependencies": {
     "ava": "^0.18.2",
+    "config": "^1.25.1",
+    "nyc": "^10.1.2",
     "xo": "^0.17.1"
   },
   "dependencies": {
