@@ -11,41 +11,39 @@ const passingEmail = {
 };
 
 test('EmailServiceProvider - No username', async t => {
-  const sendgrid = new es.SendGrid();
-  await sendgrid.sendEmail(passingEmail);
-  t.pass();
+  const err = t.throws(() => new es.SendGrid());
+  t.is(err.message, 'Username is required for authentication.');
 });
 
 test('EmailServiceProvider - No password', async t => {
-  const sendgrid = new es.SendGrid('username');
-  await sendgrid.sendEmail(passingEmail);
-  t.pass();
+  const err = t.throws(() => new es.SendGrid('username'));
+  t.is(err.message, 'Password is required for authentication.');
 });
 
 test('EmailServiceProvider - No argument while sending', async t => {
   const sendgrid = new es.SendGrid('username', 'password');
-  await sendgrid.sendEmail();
-  t.pass();
+  const err = await t.throws(() => sendgrid.sendEmail());
+  t.is(err.message, 'No argument found in the sendEmail function.');
 });
 
 test('EmailServiceProvider - No from', async t => {
   const sendgrid = new es.SendGrid('username', 'password');
-  await sendgrid.sendEmail({
+  const err = await t.throws(() => sendgrid.sendEmail({
     to: 'frost.akemi@gmail.com',
     subject: 'Hi',
     text: 'Hi there!'
-  });
-  t.pass();
+  }));
+  t.is(err.message, '\'from\' string is required in the details argument.');
 });
 
 test('EmailServiceProvider - No to', async t => {
   const sendgrid = new es.SendGrid('username', 'password');
-  await sendgrid.sendEmail({
+  const err = await t.throws(() => sendgrid.sendEmail({
     from: 'frost.akemi@gmail.com',
     subject: 'Hi',
     text: 'Hi there!'
-  });
-  t.pass();
+  }));
+  t.is(err.message, '\'to\' array/string is required in the details argument.');
 });
 
 test('SendGrid', async t => {
@@ -88,7 +86,6 @@ test('All Providers', async t => {
 });
 
 test('No providers', async t => {
-  const emailService = new es.EmailService();
-  await emailService.sendEmail(passingEmail);
-  t.pass();
+  const err = t.throws(() => new es.EmailService());
+  t.is(err.message, 'Argument must be an array of EmailServiceProvider instances');
 });
