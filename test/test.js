@@ -83,8 +83,13 @@ test('Mandrill', async t => {
   t.pass();
 });
 
+test('SES - No region', async t => {
+  const err = t.throws(() => new es.SES(config.SES.username, config.SES.password));
+  t.is(err.message, 'A supported region is needed to connect with AWS.');
+});
+
 test('SES', async t => {
-  const ses = new es.SES(config.SES.username, config.SES.password);
+  const ses = new es.SES(config.SES.username, config.SES.password, config.SES.region);
   await ses.sendEmail({
     to: config.SES.to,
     from: config.SES.from,

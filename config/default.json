@@ -29,6 +29,7 @@
   "SES" : {
     "username": "user",
     "password": "pass",
+    "region": "us-west-2",
     "from": "frost.akemi@gmail.com",
     "to": "frost.akemi2@gmail.com",
     "subject": "Hi!",
