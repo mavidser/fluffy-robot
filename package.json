@@ -1,0 +1,19 @@
+{
+  "name": "email-services",
+  "version": "0.0.1",
+  "description": "Library to send emails using various services",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mavidser/fluffy-robot.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "author": {
+    "name": "Sid Verma",
+    "email": "sid@sidverma.net",
+    "url": "https://github.com/mavidser"
+  },
+  "license": "ISC"
+}
