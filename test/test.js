@@ -1,6 +1,6 @@
 import test from 'ava';
-import es from '../';
 import config from 'config';
+import es from '../';
 
 test('EmailServiceProvider - No username', async t => {
   const err = t.throws(() => new es.SendGrid());
