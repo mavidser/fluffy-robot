@@ -10,31 +10,31 @@ let sendPassingEmail = (t, emailService, providers) => {
     subject: 'Hi',
     body: '<b>Hi there!</b>',
     isBodyHtml: true
-  }, providers)
-}
+  }, providers);
+};
 
 test('SendGrid', async t => {
   const sendgrid = new es.SendGrid();
   const emailService = new es.EmailService();
-  const result = await sendPassingEmail(t, emailService, [sendgrid]);
+  await sendPassingEmail(t, emailService, [sendgrid]);
 });
 
 test('Mailgun', async t => {
   const mailgun = new es.Mailgun();
   const emailService = new es.EmailService();
-  const result = await sendPassingEmail(t, emailService, [mailgun]);
+  await sendPassingEmail(t, emailService, [mailgun]);
 });
 
 test('Mandrill', async t => {
   const mandrill = new es.Mandrill();
   const emailService = new es.EmailService();
-  const result = await sendPassingEmail(t, emailService, [mandrill]);
+  await sendPassingEmail(t, emailService, [mandrill]);
 });
 
 test('SES', async t => {
   const ses = new es.SES();
   const emailService = new es.EmailService();
-  const result = await sendPassingEmail(t, emailService, [ses]);
+  await sendPassingEmail(t, emailService, [ses]);
 });
 
 test('All Providers', async t => {
@@ -44,5 +44,5 @@ test('All Providers', async t => {
                                    .addMandrill()
                                    .addSES();
   const emailService = new es.EmailService(emailServiceConfig);
-  const result = await sendPassingEmail(t, emailService);
+  await sendPassingEmail(t, emailService);
 });
