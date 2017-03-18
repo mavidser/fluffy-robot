@@ -2,15 +2,6 @@ import test from 'ava';
 import es from '../';
 import config from 'config';
 
-const passingEmail = {
-  from: 'frost.akemi@gmail.com',
-  to: ['frost.akemi0@yopmail.com', 'frost.akemi1@yopmail.com'],
-  cc: ['frost.akemi2@yopmail.com', 'frost.akemi3@yopmail.com'],
-  bcc: ['frost.akemi4@yopmail.com', 'frost.akemi5@yopmail.com'],
-  subject: 'Hi',
-  html: '<b>Hi there!</b>'
-};
-
 test('EmailServiceProvider - No username', async t => {
   const err = t.throws(() => new es.SendGrid());
   t.is(err.message, 'Username is required for authentication.');
