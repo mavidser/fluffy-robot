@@ -7,6 +7,9 @@
     "url": "https://github.com/mavidser/fluffy-robot.git"
   },
   "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
   "engines": {
     "node": ">=4"
   },
@@ -15,5 +18,12 @@
     "email": "sid@sidverma.net",
     "url": "https://github.com/mavidser"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": true
+  }
 }
