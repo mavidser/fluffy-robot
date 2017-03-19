@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && nyc ava"
   },
   "engines": {
     "node": ">=6"
