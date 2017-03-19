@@ -91,17 +91,59 @@ test('SES', async t => {
   t.pass();
 });
 
-test('All Providers - Sendgrid', async t => {
+test('All Providers', async t => {
   const sendgrid = new es.SendGrid(config.SendGrid.username, config.SendGrid.password);
   const mailgun = new es.Mailgun(config.Mailgun.username, config.Mailgun.password);
   const mandrill = new es.Mandrill(config.Mandrill.username, config.Mandrill.password);
-  const ses = new es.SES(config.SES.username, config.SES.password);
+  const ses = new es.SES(config.SES.username, config.SES.password, config.SES.region);
   const emailService = new es.EmailService([
     sendgrid,
     mailgun,
     mandrill,
     ses
   ]);
+  await emailService.sendEmail({
+    to: config.SendGrid.to,
+    from: config.SendGrid.from,
+    subject: config.SendGrid.subject,
+    text: config.SendGrid.text,
+    html: config.SendGrid.html
+  });
+  t.pass();
+});
+
+test('All Providers - All failures', async t => {
+  const sendgrid = new es.SendGrid('username', 'password');
+  const mailgun = new es.Mailgun('username', 'password');
+  const mandrill = new es.Mandrill('username', 'password');
+  const ses = new es.SES('username', 'password', 'region');
+  const emailService = new es.EmailService([
+    sendgrid,
+    mailgun,
+    mandrill,
+    ses
+  ]);
+  await emailService.sendEmail({
+    to: config.SendGrid.to,
+    from: config.SendGrid.from,
+    subject: config.SendGrid.subject,
+    text: config.SendGrid.text,
+    html: config.SendGrid.html
+  });
+  t.pass();
+});
+
+test('All Providers - First one is a failure', async t => {
+  const sendgrid = new es.SendGrid('username', 'password');
+  const mailgun = new es.Mailgun(config.Mailgun.username, config.Mailgun.password);
+  const mandrill = new es.Mandrill(config.Mandrill.username, config.Mandrill.password);
+  const ses = new es.SES(config.SES.username, config.SES.password, config.SES.region);
+  const emailService = new es.EmailService([
+    sendgrid,
+    mailgun,
+    mandrill,
+    ses
+  ], {logging: true});
   await emailService.sendEmail({
     to: config.SendGrid.to,
     from: config.SendGrid.from,
