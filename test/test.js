@@ -123,14 +123,15 @@ test('All Providers - All failures', async t => {
     mandrill,
     ses
   ]);
-  await emailService.sendEmail({
+  const err = await t.throws(emailService.sendEmail({
     to: config.SendGrid.to,
     from: config.SendGrid.from,
     subject: config.SendGrid.subject,
     text: config.SendGrid.text,
     html: config.SendGrid.html
-  });
-  t.pass();
+  }));
+  t.is(err.length, 4);
+  t.true(err.every(item => item instanceof es.EmailServiceError));
 });
 
 test('All Providers - First one is a failure', async t => {
@@ -144,14 +145,15 @@ test('All Providers - First one is a failure', async t => {
     mandrill,
     ses
   ], {logging: true});
-  await emailService.sendEmail({
+  let result = await emailService.sendEmail({
     to: config.SendGrid.to,
     from: config.SendGrid.from,
     subject: config.SendGrid.subject,
     text: config.SendGrid.text,
     html: config.SendGrid.html
   });
-  t.pass();
+  t.is(result.errors.length, 1);
+  t.true(result.errors.every(item => item instanceof es.EmailServiceError));
 });
 
 test('No providers', async t => {
